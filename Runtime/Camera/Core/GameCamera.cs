@@ -7,16 +7,16 @@ namespace GalaxyGourd.KCC
     /// Base class for all Cinemachine brain cameras.
     /// </summary>
     [RequireComponent(typeof(CinemachineBrain))]
-    [RequireComponent(typeof(UnityEngine.Camera))]
+    [RequireComponent(typeof(Camera))]
     public class GameCamera : MonoBehaviour
     {
         #region VARIABLES
 
         [Header("References")]
-        [SerializeField] private UnityEngine.Camera _camera;
+        [SerializeField] private Camera _camera;
         [SerializeField] protected CinemachineBrain _brain;
 
-        public UnityEngine.Camera Camera => _camera;
+        public Camera Camera => _camera;
         public CinemachineBrain Brain => _brain;
 
         #endregion VARIABLES

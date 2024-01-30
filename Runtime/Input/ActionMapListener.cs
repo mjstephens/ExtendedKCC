@@ -108,7 +108,6 @@ namespace GalaxyGourd.KCC
         
         protected virtual void OnControlsChanged(PlayerInput input)
         {
-            Debug.Log(input.currentControlScheme);
             _currentControlScheme = input.currentControlScheme;
         }
 

@@ -27,8 +27,10 @@ namespace GalaxyGourd.KCC
 
             if (_operator.ViewState == KCCCameraViewState.FirstPerson && _kcc)
             {
-                // We want to snap the 
-                _kcc.Motor.SetRotation(Quaternion.Euler(_controllerTransform.eulerAngles.x, transform.eulerAngles.y, _controllerTransform.eulerAngles.z));
+                _kcc.Motor.SetRotation(Quaternion.Euler(
+                    _controllerTransform.eulerAngles.x, 
+                    transform.eulerAngles.y, 
+                    _controllerTransform.eulerAngles.z));
                 _kcc.MeshRoot.transform.localEulerAngles = new Vector3(
                     _kcc.MeshRoot.transform.localEulerAngles.x,
                     0,

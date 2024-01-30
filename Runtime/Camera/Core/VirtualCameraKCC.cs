@@ -112,6 +112,11 @@ namespace GalaxyGourd.KCC
         
         #region VIEW STATE MOVE/LOOK
 
+        public virtual void SetViewIsActive(bool active)
+        {
+            
+        }
+
         /// <summary>
         /// Returns move and look vector values based on camera mode
         /// </summary>
