@@ -1,0 +1,22 @@
+{
+    "name": "GG.KCC",
+    "rootNamespace": "GalaxyGourd.KCC",
+    "references": [
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:4307f53044263cf4b835bd812fc161a4",
+        "GUID:f4acb893c1f7a4389b654c4f95094bc8",
+        "GUID:74ede65c403e6474a8fd985ed9feddf1",
+        "GUID:d2e7158fc26174f9f841b0cc5c669743",
+        "GUID:68f86ba5e14384053a613823c7883e28",
+        "GUID:83671952ca97340b59d1a43461f81c0c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
