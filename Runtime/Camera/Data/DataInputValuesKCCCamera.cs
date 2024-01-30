@@ -1,4 +1,3 @@
-using GalaxyGourd.Input;
 using UnityEngine;
 
 namespace GalaxyGourd.KCC

@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using GalaxyGourd.Input;
-using GalaxyGourd.Tick;
 using KinematicCharacterController;
 using UnityEngine;
 
@@ -10,7 +8,7 @@ namespace GalaxyGourd.KCC
     /// Class assigned to ANY KCC, AI or player-controlled
     /// </summary>
     [RequireComponent(typeof(KinematicCharacterMotor))]
-    public class ControllerKCC : TickableBehaviour, IKinematicCharacterControllable
+    public class ControllerKCC : MonoBehaviour, IKinematicCharacterControllable
     {
         #region VARIABLES
 
@@ -23,7 +21,6 @@ namespace GalaxyGourd.KCC
         [Header("Config")]
         [SerializeField] private DataConfigKCC _config;
         
-        public override string TickGroup => TickSettings.TickControllerHumanoid;
         public KinematicCharacterMotor Motor => _motor;
         public IKCCOperator Operator { get; set; }
         internal DataConfigKCC Config => _config;
@@ -72,16 +69,6 @@ namespace GalaxyGourd.KCC
             BonusOrientationMethod = Config.InitialBonusOrientationMethod;
         }
 
-        private void OnEnable()
-        {
-            Ticker.Register(this);
-        }
-
-        private void OnDisable()
-        {
-            Ticker.Unregister(this);
-        }
-
         private void OnDestroy()
         {
             foreach (ControllerKCCState state in _states)
@@ -108,7 +95,7 @@ namespace GalaxyGourd.KCC
 
         #region TICK
 
-        public override void Tick(float delta)
+        public void Tick(float delta)
         {
             // Set move and look vectors
             _moveInputVector = _input.MoveVector;
@@ -127,7 +114,6 @@ namespace GalaxyGourd.KCC
         {
             _states.Add(new ControllerKCCStateGrounded(this));
             _states.Add(new ControllerHumanoidStateUngrounded(this));
-            _states.Add(new ControllerHumanoidStateClimbing(this));
             _states.Add(new ControllerHumanoidStateSwimming(this));
         }
         
@@ -215,7 +201,7 @@ namespace GalaxyGourd.KCC
         
         void ICharacterController.AfterCharacterUpdate(float delta)
         {
-            LocalVelocity = _motor.transform.InverseTransformDirection(_motor.Velocity);
+            LocalVelocity = _motor.transform.InverseTransformDirection(_motor.BaseVelocity);
             _currentState?.AfterCharacterUpdate(delta);
 
             // Update animator properties

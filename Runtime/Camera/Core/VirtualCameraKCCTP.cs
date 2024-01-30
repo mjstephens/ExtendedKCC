@@ -15,16 +15,12 @@ namespace GalaxyGourd.KCC
 
         #region INITIALIZATION
 
-        protected void Awake()
-        {
-            _framingTransposer = _vCam.GetComponent<CinemachinePositionComposer>();
-        }
-
         public override void Init(IKCCOperator op, ControllerKCC kcc)
         {
             base.Init(op, kcc);
             
-            _vCam.Follow = kcc.CameraTargetTP;
+            _framingTransposer = VCam.GetComponent<CinemachinePositionComposer>();
+            VCam.Follow = kcc.CameraTargetTP;
         }
 
         #endregion INITIALIZATION
@@ -49,11 +45,6 @@ namespace GalaxyGourd.KCC
 
                 _currentScrollSpeed = Mathf.Lerp(_currentScrollSpeed, 0, Time.deltaTime * config.ZoomAdjustDecayRate);
             }
-        }
-
-        internal float IncrementCameraFollowDistance(float increment)
-        {
-            return 0;//_vCam.GetCinemachineComponent<>()
         }
 
         #endregion FUNCTION

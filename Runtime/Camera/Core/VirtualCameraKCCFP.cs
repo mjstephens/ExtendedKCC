@@ -7,24 +7,13 @@ namespace GalaxyGourd.KCC
     /// </summary>
     public class VirtualCameraKCCFP : VirtualCameraKCC
     {
-        #region VARIABLES
-
-       // [Header("References")]
-        // [SerializeField] private VisionSourcePlayerHumanoid _visionSource;
-        //
-        // internal VisionSourcePlayerHumanoid VisionSource => _visionSource;
-
-
-        #endregion VARIABLES
-
-
         #region INITIALIZATION
 
         public override void Init(IKCCOperator op, ControllerKCC kcc)
         {
             base.Init(op, kcc);
             
-           _vCam.Follow = kcc.CameraTargetFP;
+           VCam.Follow = kcc.CameraTargetFP;
         }
 
         #endregion INITIALIZATION

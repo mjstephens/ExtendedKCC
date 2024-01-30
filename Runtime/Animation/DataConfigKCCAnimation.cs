@@ -1,5 +1,4 @@
 ﻿using System;
-using GalaxyGourd.Utility;
 using UnityEngine;
 
 namespace GalaxyGourd.KCC
@@ -61,15 +60,18 @@ namespace GalaxyGourd.KCC
 			[Header("Ground Movement")]
 			[SerializeField, Tooltip("Should the right foot start as grounded? Default is the left foot")]
 			bool m_RightFootGrounded;
-					
-			[SerializeField, Tooltip("The range used to interpolate the forward speed animation parameter")]
-			FloatRange m_ForwardSpeedRange = new FloatRange(0.2f, 0.35f);
 
-			[SerializeField, Tooltip("The range used to interpolate the lateral speed animation parameter")]
-			FloatRange m_LateralSpeedRange = new FloatRange(0.2f, 0.35f);
+			[SerializeField, Tooltip("The range used to interpolate the forward speed animation parameter")] 
+			[Range(0.2f, 0.35f)]
+			private float m_ForwardSpeedRange = 0.2f;
+
+			[SerializeField, Tooltip("The range used to interpolate the lateral speed animation parameter")] 
+			[Range(0.2f, 0.35f)]
+			private float m_LateralSpeedRange = 0.2f;
 
 			[SerializeField, Tooltip("The range used to interpolate the turning speed animation parameter")]
-			FloatRange m_TurningSpeedRange = new FloatRange(0.01f, 0.05f);
+			[Range(0.01f, 0.05f)]
+			float m_TurningSpeedRange = 0.025f;
 			
 			[SerializeField, Tooltip("Curve used to remap raw normalized turning speed")]
 			AnimationCurve m_TurningSpeedMap = AnimationCurve.Linear(0.0f, 0.0f, 1.0f, 1.0f);
@@ -217,19 +219,19 @@ namespace GalaxyGourd.KCC
 			/// Gets the range used to interpolate the animator's turning speed. This range will return a damp time that
 			/// is passed on to the animator in <see cref="Animator.SetFloat(string, float, float, float)"/>.
 			/// </summary>
-			public FloatRange turningSpeedInterpolationRange { get { return m_TurningSpeedRange; } }
+			public float turningSpeedInterpolationRange { get { return m_TurningSpeedRange; } }
 
 			/// <summary>
 			/// Gets the range used to interpolate the animator's lateral speed. This range will return a damp time that
 			/// is passed on to the animator in <see cref="Animator.SetFloat(string, float, float, float)"/>.
 			/// </summary>
-			public FloatRange lateralSpeedInterpolationRange { get { return m_LateralSpeedRange; } }
+			public float lateralSpeedInterpolationRange { get { return m_LateralSpeedRange; } }
 
 			/// <summary>
 			/// Gets the range used to interpolate the animator's forward speed. This range will return a damp time that
 			/// is passed on to the animator in <see cref="Animator.SetFloat(string, float, float, float)"/>.
 			/// </summary>
-			public FloatRange forwardSpeedInterpolationRange { get { return m_ForwardSpeedRange; } }
+			public float forwardSpeedInterpolationRange { get { return m_ForwardSpeedRange; } }
 		}
 		
 		// values used to determine the grounded foot based on animation normalized time. These should only be changed
@@ -274,17 +276,17 @@ namespace GalaxyGourd.KCC
 		/// <summary>
 		/// Gets the forward speed parameter configuration.
 		/// </summary>
-		public FloatRange forwardSpeedInterpolation { get { return m_Advanced.forwardSpeedInterpolationRange; } }
+		public float forwardSpeedInterpolation { get { return m_Advanced.forwardSpeedInterpolationRange; } }
 
 		/// <summary>
 		/// Gets the lateral speed parameter configuration.
 		/// </summary>
-		public FloatRange lateralSpeedInterpolation { get { return m_Advanced.lateralSpeedInterpolationRange; } }
+		public float lateralSpeedInterpolation { get { return m_Advanced.lateralSpeedInterpolationRange; } }
 
 		/// <summary>
 		/// Gets the turning speed parameter configuration.
 		/// </summary>
-		public FloatRange turningSpeedInterpolation { get { return m_Advanced.turningSpeedInterpolationRange; } }
+		public float turningSpeedInterpolation { get { return m_Advanced.turningSpeedInterpolationRange; } }
 
 		/// <summary>
 		/// Gets whether the right foot should start as grounded.

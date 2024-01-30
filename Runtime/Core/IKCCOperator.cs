@@ -1,12 +1,9 @@
-using GalaxyGourd.Input;
-
 namespace GalaxyGourd.KCC
 {
     /// <summary>
     /// Defines necessary properties for a player to facilitate controller + camera communications
     /// </summary>
-    public interface IKCCOperator : IInputReceiver<DataInputValuesControllerKCC>,
-                                  IInputReceiver<DataInputValuesKCCCamera>
+    public interface IKCCOperator : IInputReceiver<DataInputValuesControllerKCC>, IInputReceiver<DataInputValuesKCCCamera>
     {
         #region PROPERTIES
 

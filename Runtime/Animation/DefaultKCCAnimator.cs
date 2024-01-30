@@ -1,4 +1,3 @@
-using GalaxyGourd.Tick;
 using UnityEngine;
 
 namespace GalaxyGourd.KCC
@@ -7,12 +6,10 @@ namespace GalaxyGourd.KCC
     /// Default animation implementation. Overwrite or replace for custom functionality
     /// </summary>
     [RequireComponent(typeof(Animator))]
-    public class DefaultKCCAnimator : TickableBehaviour
+    public class DefaultKCCAnimator : MonoBehaviour
     {
         #region VARIABLES
         
-        public override string TickGroup => TickSettings.TickHumanoidAnimation;
-
         private Animator _animator;
         private IKCCAnimationProvider _provider;
         
@@ -62,7 +59,7 @@ namespace GalaxyGourd.KCC
 
         #region TICK
 
-        public override void Tick(float delta)
+        public void Tick(float delta)
         {
             if (_provider == null)
                 return;

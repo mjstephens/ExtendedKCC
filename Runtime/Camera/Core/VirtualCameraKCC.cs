@@ -1,19 +1,19 @@
 using System;
-using GalaxyGourd.Camera;
-using GalaxyGourd.Tick;
 using KinematicCharacterController;
+using Unity.Cinemachine;
 using UnityEngine;
 
 namespace GalaxyGourd.KCC
 {
-    public abstract class VirtualCameraKCC : GameVirtualCamera, ITickable
+    [RequireComponent(typeof(CinemachineCamera))]
+    public abstract class VirtualCameraKCC : MonoBehaviour
     {
         #region VARIABLES
 
         [Header("Config")]
         [SerializeField] protected DataConfigKCCVirtualCamera _config;
-
-        public string TickGroup => TickSettings.TickDefaultUpdate;
+        
+        public CinemachineCamera VCam { get; private set; }
 
         protected IKCCOperator _operator;
         protected ControllerKCC _kcc;
@@ -28,8 +28,6 @@ namespace GalaxyGourd.KCC
 
         protected virtual void OnEnable()
         {
-            Ticker.Register(this);
-
             Cursor.lockState = CursorLockMode.Locked;
             _targetVerticalAngle = 0f;
             _planarDirection = Vector3.forward;
@@ -37,14 +35,11 @@ namespace GalaxyGourd.KCC
         
         public virtual void Init(IKCCOperator op, ControllerKCC kcc)
         {
+            VCam = GetComponent<CinemachineCamera>();
+
             _operator = op;
             _kcc = kcc;
             _controllerTransform = kcc.Motor.Transform;
-        }
-
-        protected virtual void OnDisable()
-        {
-            Ticker.Unregister(this);
         }
 
         #endregion INITIALIZATION
@@ -52,7 +47,7 @@ namespace GalaxyGourd.KCC
         
         #region TICK
         
-        void ITickable.Tick(float delta)
+        public void Tick(float delta)
         {
             if (!_controllerTransform)
                 return;

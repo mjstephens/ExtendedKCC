@@ -1,4 +1,3 @@
-using GalaxyGourd.Input;
 using KinematicCharacterController;
 
 namespace GalaxyGourd.KCC
